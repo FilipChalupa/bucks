@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bucks</title>
+	<link rel="stylesheet" href="./media/css/style.css" />
+	<script src="./media/js/jquery-1.9.1.min.js"></script>
+	<script defer src="./media/js/basic.js"></script>
+</head>
+<body>
+	<div id="views">
+		<div class="view" data-name="login" id="login">
+			přihlášení
+			<form action="./" method="post">
+				<label for="login-key">Klíč</label>
+				<input type="text" name="key" id="login-key">
+				<input type="submit" value="Přihlásit se">
+			</form>
+		</div>
+		<div class="view" data-name="info" id="info">
+			info
+		</div>
+		<div class="view" data-name="settings" id="settings">
+			nastavení
+		</div>
+		<div class="view" data-name="quiz" id="quiz">
+			fotky
+		</div>
+	</div>
+</body>
+</html>

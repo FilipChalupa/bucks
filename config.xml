@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id        = "cz.bucks.app"
+    versionCode="10" 
+    version   = "2.0.0">
+
+    <name>Bucks</name>
+    <description>
+        
+    </description>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+    <access origin="*" />
+    
+    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="fullscreen" value="true" />
+    <icon src="icons/icon72.png" />
+    <icon src="icons/icon34.png" gap:platform="android" gap:density="ldpi" />
+    <icon src="icons/icon46.png" gap:platform="android" gap:density="mdpi" />
+    <icon src="icons/icon72.png" gap:platform="android" gap:density="hdpi" />
+    <icon src="icons/icon96.png" gap:platform="android" gap:density="xhdpi" />
+</widget>
