@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+	background-color: #204921;
+	color: white;
+	text-align: center;
+}
+#views {
+	max-width: 500px;
+	margin: 0 auto;
+}
+#views > .view {
+	display: none;
+}
+#views > .view.show {
+	display: block;
+}
+.button.frame {
+	border: 0.1em solid black;
+	margin: 0.25em;
+	padding: 0.25em;
+}
+.button.frame.blocked {
+	opacity: 0.2;
+}
+.button.frame:not(.blocked):active {
+	background-color: red;
+}
+.button:hover {
+	cursor: pointer;
+}
+.header {
+	color: rgb(252,248,0);
+	font-size: 175%;
+	padding: 0.5em;
+}
+.hide {
+	display: none;
+}
+#sync .statusbar {
+	margin: 1em;
+	border-radius: 0.5em;
+	overflow: hidden;
+	background-color: gray;
+}
+#sync .bar {
+	transition: width 0.1s;
+	background-color: rgb(252,248,0);
+	height: 2em;
+}

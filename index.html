@@ -10,21 +10,50 @@
 <body>
 	<div id="views">
 		<div class="view" data-name="login" id="login">
-			přihlášení
+			<div class="header">Přihlášení</div>
 			<form action="./" method="post">
 				<label for="login-key">Klíč</label>
 				<input type="text" name="key" id="login-key">
-				<input type="submit" value="Přihlásit se">
+				<input type="submit" value="xx" class="hide">
+				<div class="button frame" data-action="login">Přihlásit se</div>
 			</form>
 		</div>
 		<div class="view" data-name="info" id="info">
-			info
+			<div class="header">Info</div>
+			<div id="user-info">
+				<div class="name dynamic" data-dynamic="name"></div>
+				<div class="name">
+					Úspěšnost:
+					<span class="dynamic" data-dynamic="accuracy"></span>
+				</div>
+			</div>
+			<div class="button frame" data-action="view-quiz">Trénink</div>
+			<div class="button frame" data-action="view-settings">Nastavení</div>
 		</div>
 		<div class="view" data-name="settings" id="settings">
-			nastavení
+			<div class="header">Nastavení</div>
+			<div class="button frame" data-action="sync">Synchronizovat</div>
+			<div class="button frame" data-action="logout">Odhlásit se</div>
+			<div class="button frame" data-action="view-info">Zpět</div>
 		</div>
 		<div class="view" data-name="quiz" id="quiz">
-			fotky
+			<div class="header">Trénink</div>
+			<div class="button frame dynamic" data-dynamic="back" data-action="view-info">Zpět</div>
+			<div class="image dynamic" data-dynamic="image"></div>
+			<div class="buttons dynamic" data-dynamic="buttons">
+				<div class="button frame dynamic" data-action="quiz-1" data-dynamic="option1">Option 1</div>
+				<div class="button frame dynamic" data-action="quiz-2" data-dynamic="option2">Option 2</div>
+				<div class="button frame dynamic" data-action="quiz-3" data-dynamic="option3">Option 3</div>
+				<div class="button frame dynamic" data-action="quiz-4" data-dynamic="option4">Option 4</div>
+			</div>
+		</div>
+		<div class="view" data-name="sync" id="sync">
+			<div class="header">Synchronizace</div>
+			<div class="statusbar">
+				<div class="bar dynamic" data-dynamic="bar"></div>
+			</div>
+			<div class="message dynamic" data-dynamic="message"></div>
+			<div class="button frame dynamic" data-action="view-info" data-dynamic="back">Zpět</div>
 		</div>
 	</div>
 </body>
