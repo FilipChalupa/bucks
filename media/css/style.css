@@ -43,6 +43,11 @@ body.right_answer {
 	color: black;
 	background-image: url(../images/button_bck_active.png);
 }
+.button.frame.blocked:active {
+	background-color: #204921;
+	color: white;
+	background-image: url(../images/button_bck.png);
+}
 .button:hover {
 	cursor: pointer;
 }
