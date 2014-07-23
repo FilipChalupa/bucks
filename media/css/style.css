@@ -1,8 +1,16 @@
 body {
 	margin: 0;
-	background-color: #204921;
+	background-color: black;
 	color: white;
 	text-align: center;
+	font-size: 120%;
+	transition: background-color 0.2s;
+}
+body.wrong_answer {
+	background-color: red;
+}
+body.right_answer {
+	background-color: green;
 }
 #views {
 	max-width: 500px;
@@ -15,15 +23,22 @@ body {
 	display: block;
 }
 .button.frame {
-	border: 0.1em solid black;
-	margin: 0.25em;
-	padding: 0.25em;
+	border-radius: 10px;
+	margin: 15px;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	background-color: #204921;
+	background-image: url(../images/button_bck.png);
 }
 .button.frame.blocked {
 	opacity: 0.2;
+	cursor: default;
 }
 .button.frame:not(.blocked):active {
-	background-color: red;
+	background-color: #fcf800;
+	color: black;
+	background-image: url(../images/button_bck_active.png);
 }
 .button:hover {
 	cursor: pointer;
@@ -46,4 +61,13 @@ body {
 	transition: width 0.1s;
 	background-color: rgb(252,248,0);
 	height: 2em;
+}
+#sync .bar.done {
+	background-color: rgb(20,255,20);
+}
+#sync .bar.fail {
+	background-color: rgb(255,20,20);
+}
+#quiz .image img {
+	max-width: 100%;
 }

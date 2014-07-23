@@ -11,6 +11,7 @@
 	<div id="views">
 		<div class="view" data-name="login" id="login">
 			<div class="header">Přihlášení</div>
+			K přihlášení je potřeba připojení k internetu.
 			<form action="./" method="post">
 				<label for="login-key">Klíč</label>
 				<input type="text" name="key" id="login-key">
@@ -24,7 +25,7 @@
 				<div class="name dynamic" data-dynamic="name"></div>
 				<div class="name">
 					Úspěšnost:
-					<span class="dynamic" data-dynamic="accuracy"></span>
+					<span class="dynamic" data-dynamic="accuracy">0</span>%
 				</div>
 			</div>
 			<div class="button frame" data-action="view-quiz">Trénink</div>
@@ -53,7 +54,9 @@
 				<div class="bar dynamic" data-dynamic="bar"></div>
 			</div>
 			<div class="message dynamic" data-dynamic="message"></div>
-			<div class="button frame dynamic" data-action="view-info" data-dynamic="back">Zpět</div>
+			<div class="button frame dynamic" data-action="reload" data-dynamic="back">Zpět</div>
+			<div class="button frame dynamic hide" data-action="reload" data-dynamic="repeat">Zkusit znovu</div>
+			<div class="button frame dynamic hide" data-action="logout" data-dynamic="logout">Odhlásit se</div>
 		</div>
 	</div>
 </body>
