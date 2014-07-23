@@ -55,7 +55,7 @@ $(function () {
 			$loginForm.addClass('loading');
 			$.post( homepage+'/player/login/', $loginForm.serializeArray(),function(data) {
 				try {
-                    data = $.parseJSON(data);
+                    //data = $.parseJSON(data);
                     userData = {
 						'id': data.id,
 						'name': data.name,
@@ -90,7 +90,7 @@ $(function () {
 		$quizElements.image.html('<img src="'+getFileURL(filename)+'">');
 	}
 	function getFileURL(filename) {
-		return 'http://localhost/uploads/'+filename;
+		return homepage+'/uploads/'+filename;
 	}
 
 	$liveButtons.on('click','.button',function(){
@@ -271,7 +271,7 @@ $(function () {
 		} else if (step === 3) {
 			$.post( homepage+'/player/upload/', upload_data,function(data) {
 				try {
-                    data = $.parseJSON(data);
+                    //data = $.parseJSON(data);
                     userData.right_cache = {};
                     userData.wrong_cache = {};
                     setStorage('user',userData);
@@ -287,7 +287,7 @@ $(function () {
 			//build strategies structure
 			$.post( homepage+'/player/structure/', upload_data,function(data) {
 				try {
-                    data = $.parseJSON(data);
+                    //data = $.parseJSON(data);
                     quizData = [];
                     for (var i=0;i<data.strategies.length;++i) {
                     	quizData.push(data.strategies[i]);
