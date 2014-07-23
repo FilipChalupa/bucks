@@ -1,11 +1,5 @@
 $(function () {
-	
-	$(document).keyup(function(e) {
-		 if (e.keyCode === 37) { // left
-			//console.log(JSON.stringify(userData));
-		}
-	});
-	var homepage = 'http://127.0.0.1',
+	var homepage = 'http://bucks.g6.cz',
 		$views = $('#views .view'),
 		$window = $(window),
 		$body = $('body'),
