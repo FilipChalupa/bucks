@@ -370,6 +370,7 @@ $(function () {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
 	} catch (e) {
 		alert('big fail');
+		alert(e);
 	}
 
 
