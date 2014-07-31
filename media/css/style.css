@@ -79,3 +79,11 @@ body.right_answer {
 #quiz .image img {
 	max-width: 100%;
 }
+#login form {
+	background-position: center 20px;
+	background-repeat: no-repeat;
+	padding-top: 50px;
+}
+#login form.loading {
+	background-image: url(../images/loading.gif);
+}
