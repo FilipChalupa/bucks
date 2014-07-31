@@ -334,40 +334,43 @@ $(function () {
 		sourceUrlXX = 'http://bucks.g6.cz/uploads/1406145881.jpg';
 
 
-	
-	function fileSystemSuccess(fileSystem) {
-	    var directoryEntry = fileSystem.root; // to get root path to directory
-	    directoryEntry.getDirectory(folderNameXX, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
-	    var rootdir = fileSystem.root;
-	    var fp = rootdir.fullPath;
-	    fp = fp+"/"+folderNameXX+"/"+fileNameXX;
-	    var fileTransfer = new FileTransfer();
-	   fileTransfer.download(sourceUrlXX,fp,  
-	        function(entry) {
-	            alert("download complete: " + entry.fullPath);
-	        },
-	        function(error) {
-	            alert("download error source " + error.source);
-	            alert("download error target " + error.target);
-	            alert("upload error code" + error.code);
-	        }
-	    );
-	}
-	function onDirectorySuccess(parent) {
-	    console.log(parent);
-	    alert(parent);
-	}
-	 
-	function onDirectoryFail(error) {
-	    alert("Unable to create new directory: " + error.code);
-	}
-	 
-	function fileSystemFail(evt) {
-	    console.log(evt.target.error.code);
-	    alert(evt.target.error.code);
-	}
+	try {
+		function fileSystemSuccess(fileSystem) {
+		    var directoryEntry = fileSystem.root; // to get root path to directory
+		    directoryEntry.getDirectory(folderNameXX, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
+		    var rootdir = fileSystem.root;
+		    var fp = rootdir.fullPath;
+		    fp = fp+"/"+folderNameXX+"/"+fileNameXX;
+		    var fileTransfer = new FileTransfer();
+		   fileTransfer.download(sourceUrlXX,fp,  
+		        function(entry) {
+		            alert("download complete: " + entry.fullPath);
+		        },
+		        function(error) {
+		            alert("download error source " + error.source);
+		            alert("download error target " + error.target);
+		            alert("upload error code" + error.code);
+		        }
+		    );
+		}
+		function onDirectorySuccess(parent) {
+		    console.log(parent);
+		    alert(parent);
+		}
+		 
+		function onDirectoryFail(error) {
+		    alert("Unable to create new directory: " + error.code);
+		}
+		 
+		function fileSystemFail(evt) {
+		    console.log(evt.target.error.code);
+		    alert(evt.target.error.code);
+		}
 
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
+	} catch (e) {
+		alert('big fail');
+	}
 
 
 
