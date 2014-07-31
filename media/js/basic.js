@@ -334,7 +334,7 @@ $(function () {
 		sourceUrlXX = 'http://bucks.g6.cz/uploads/1406145881.jpg';
 
 
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
+	
 	function fileSystemSuccess(fileSystem) {
 	    var directoryEntry = fileSystem.root; // to get root path to directory
 	    directoryEntry.getDirectory(folderNameXX, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
@@ -366,6 +366,8 @@ $(function () {
 	    console.log(evt.target.error.code);
 	    alert(evt.target.error.code);
 	}
+
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
 
 
 
