@@ -19,4 +19,6 @@
     <icon src="icons/icon46.png" gap:platform="android" gap:density="mdpi" />
     <icon src="icons/icon72.png" gap:platform="android" gap:density="hdpi" />
     <icon src="icons/icon96.png" gap:platform="android" gap:density="xhdpi" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </widget>
