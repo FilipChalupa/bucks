@@ -20,7 +20,6 @@
     <icon src="icons/icon72.png" gap:platform="android" gap:density="hdpi" />
     <icon src="icons/icon96.png" gap:platform="android" gap:density="xhdpi" />
 
-    <gap:plugin name="org.apache.cordova.core.file" />
     <gap:plugin name="org.apache.cordova.file" version="0.2.4" />
     <gap:plugin name="org.apache.cordova.file-transfer" version="0.3.0" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
