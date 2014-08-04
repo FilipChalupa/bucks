@@ -16,9 +16,9 @@
     <gap:plugin name="org.apache.cordova.file-transfer" version="0.3.0" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="phonegap-version" value="3.3.0" />
     <preference name="fullscreen" value="true" />
-
+    
     <icon src="icons/icon72.png" />
     <icon src="icons/icon34.png" gap:platform="android" gap:density="ldpi" />
     <icon src="icons/icon46.png" gap:platform="android" gap:density="mdpi" />
