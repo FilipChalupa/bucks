@@ -90,7 +90,7 @@ $(function () {
 		$quizElements.image.html('<img src="'+getFileURL(filename)+'">');
 	}
 	function getFileURL(filename) {
-		return homepage+'/uploads/'+filename;
+		return getStorage('img-'+filename);
 	}
 
 	$liveButtons.on('click','.button',function(){
@@ -247,7 +247,29 @@ $(function () {
 	function visualizeSyncStep(step) {
 		$syncElements.bar.css('width',(step*10)+'%');
 	}
-	var currentStep = 0;
+	function downloadImages(size,step,upload_data) {
+		console.log('size,step '+size+','+step);
+		if (size <= 0 || lastQuizImageIndexDownloaded >= quizData.length) {
+			syncStep(step+1);
+		} else {
+			$.post( homepage+'/player/image/'+quizData[lastQuizImageIndexDownloaded].filename.replace('.','/')+'/', upload_data,function(data) {
+				try {
+					setStorage('img-'+quizData[lastQuizImageIndexDownloaded].filename,data.image)
+					lastQuizImageIndexDownloaded++;
+					size--;
+					downloadImages(size,step,upload_data);            
+	            } catch (e) {
+	            	syncError(e);
+	            }
+			})
+			.fail(function(jqxhr, textStatus, error) {
+				syncError(imagesDownloadFail);
+			});
+		}
+	}
+	var currentStep = 0,
+		imagesDownloadFail = 'Při stahování obrázků strategií došlo k chybě.',
+		lastQuizImageIndexDownloaded;
 	function syncStep(step) {
 		setStorage('sync-needed',true);
 		currentStep = step;
@@ -302,10 +324,21 @@ $(function () {
 				syncError('Při stahování struktury došlo k chybě.');
 			});
 		} else if (step === 5) {
-			//download strategies structure
-			//todo
-			//syncError('Při stahování obrázků strategií došlo k chybě.');
+			var image_names = [];
+			$.each(quizData,function(key,val){
+				image_names.push(val.filename);
+			});
+			$.each(localStorage,function(key,val){
+				if (key.substr(0,4) === 'img-') {
+					if (image_names.indexOf(key.substr(4)) === -1) {
+						localStorage.removeItem(key);
+					}
+				}
+			});
+			lastQuizImageIndexDownloaded = 0;
 			syncStep(step+1);
+		} else if (step >= 6 && step <= 9) {
+			downloadImages(step!==9?Math.floor(quizData.length/4):quizData.length,step,upload_data);
 		} else {
 			visualizeSyncStep(10);
 			setStorage('sync-needed');
@@ -320,63 +353,11 @@ $(function () {
 	}
 	userData = getStorage('user');
 	quizData = getStorage('quiz');
+	console.log(quizData.length);
 	if (userData.name) {
 		action('view','info');
 	} else {
 		action('view','login');
 	}
-
-
-
-
-	var folderNameXX = 'bucks',
-		fileNameXX = 'image.jpg',
-		sourceUrlXX = 'http://bucks.g6.cz/uploads/1406145881.jpg';
-
-
-	try {
-		function fileSystemSuccess(fileSystem) {
-		    var directoryEntry = fileSystem.root; // to get root path to directory
-		    directoryEntry.getDirectory(folderNameXX, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
-		    var rootdir = fileSystem.root;
-		    var fp = rootdir.fullPath;
-		    fp = fp+"/"+folderNameXX+"/"+fileNameXX;
-		    var fileTransfer = new FileTransfer();
-		   fileTransfer.download(sourceUrlXX,fp,  
-		        function(entry) {
-		            alert("download complete: " + entry.fullPath);
-		        },
-		        function(error) {
-		            alert("download error source " + error.source);
-		            alert("download error target " + error.target);
-		            alert("upload error code" + error.code);
-		        }
-		    );
-		}
-		function onDirectorySuccess(parent) {
-		    console.log(parent);
-		    alert(parent);
-		}
-		 
-		function onDirectoryFail(error) {
-		    alert("Unable to create new directory: " + error.code);
-		}
-		 
-		function fileSystemFail(evt) {
-		    console.log(evt.target.error.code);
-		    alert(evt.target.error.code);
-		}
-
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
-	} catch (e) {
-		alert('big fail');
-		alert(e);
-	}
-
-
-
-
-
-
 
 });
