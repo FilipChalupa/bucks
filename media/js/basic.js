@@ -360,4 +360,7 @@ $(function () {
 		action('view','login');
 	}
 
+
+
+	document.addEventListener('touchmove', function(e){e.preventDefault();}, false);
 });
