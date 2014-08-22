@@ -12,7 +12,7 @@
     <feature name="http://api.phonegap.com/1.0/network"/>
     <access origin="*" />
 
-    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="phonegap-version" value="3.5.0" />
     <preference name="fullscreen" value="true" />
     
     <icon src="icons/icon72.png" />
