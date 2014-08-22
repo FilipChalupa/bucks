@@ -76,8 +76,16 @@ body.right_answer {
 #sync .bar.fail {
 	background-color: rgb(255,20,20);
 }
-#quiz .image img {
+#quiz .image img,
+#browse .image img {
 	max-width: 100%;
+}
+#browse .image {
+	margin-bottom: 50px;
+}
+#browse .image > div {
+	font-size: 120%;
+	color: rgb(252,248,0);
 }
 #login form {
 	background-position: center 20px;

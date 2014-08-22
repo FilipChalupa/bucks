@@ -29,6 +29,7 @@ $(function () {
 	$userInfo = getDynamicElements($userInfo);
 	$syncElements = getDynamicElements($syncElements);
 	$quizElements = getDynamicElements($quizElements);
+	$browseElements = getDynamicElements($('#browse'));
 	function getStorage(name) {
 		try {
 			var data = JSON.parse(localStorage[name]);
@@ -131,6 +132,10 @@ $(function () {
 	}
 	function action(name,param,param2) {
 		switch (name) {
+			case 'browse':
+				$browseElements.buttons.find('.image').remove();
+				$browseElements.buttons.find('.button-'+param).parent('.parent').append('<div class="image"><img src="'+getFileURL(quizData[param].filename)+'"><div>'+quizData[param].name+'</div></div>');
+				break;
 			case 'view':
 				$views.each(function(){
 					var $this = $(this);
@@ -146,6 +151,12 @@ $(function () {
 					if (userData.right+userData.wrong !== 0) {
 						$userInfo.accuracy.text(Math.ceil(100*userData.right/(userData.right+userData.wrong)));
 					}
+				} else if (param === 'browse') {
+					//$browseElements.image.empty();
+					$browseElements.buttons.empty();
+					$.each(quizData,function(key,val){
+						$browseElements.buttons.append('<div class="parent"><div class="button frame button-'+key+'" data-action="browse-'+key+'">'+val.name+'</div></div>');
+					});
 				} else if (param === 'quiz') {
 					if (quizData.length === 0) {
 						action('view','info');
@@ -353,7 +364,6 @@ $(function () {
 	}
 	userData = getStorage('user');
 	quizData = getStorage('quiz');
-	console.log(quizData.length);
 	if (userData.name) {
 		action('view','info');
 	} else {
