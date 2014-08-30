@@ -95,3 +95,20 @@ body.right_answer {
 #login form.loading {
 	background-image: url(../images/loading.gif);
 }
+#user-info .name {
+	font-size: 120%;
+}
+#user-info .name {
+	font-size: 120%;
+	padding-bottom: 20px;
+}
+#user-info .name .position {
+	font-style: italic;
+	font-size: 82%;
+}
+#user-info .name .position:before {
+	content: '(';
+}
+#user-info .name .position:after {
+	content: ')';
+}

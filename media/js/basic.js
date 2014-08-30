@@ -64,7 +64,8 @@ $(function () {
 						'right': parseInt(data.right_answers),
 						'wrong': parseInt(data.wrong_answers),
 						'right_cache': {},
-						'wrong_cache': {}
+						'wrong_cache': {},
+						'position': data.position
 					};
 					setStorage('user',userData);
 					action('sync');
@@ -148,6 +149,9 @@ $(function () {
 						action('sync');
 					}
 					$userInfo.name.text(userData.name);
+					if (userData.position) {
+						$userInfo.name.append('<div class="position">'+userData.position+'</div>');
+					}
 					if (userData.right+userData.wrong !== 0) {
 						$userInfo.accuracy.text(Math.ceil(100*userData.right/(userData.right+userData.wrong)));
 					}
@@ -259,7 +263,6 @@ $(function () {
 		$syncElements.bar.css('width',(step*10)+'%');
 	}
 	function downloadImages(size,step,upload_data) {
-		console.log('size,step '+size+','+step);
 		if (size <= 0 || lastQuizImageIndexDownloaded >= quizData.length) {
 			syncStep(step+1);
 		} else {
@@ -333,6 +336,16 @@ $(function () {
 			})
 			.fail(function(jqxhr, textStatus, error) {
 				syncError('Při stahování struktury došlo k chybě.');
+			});
+			//update position
+			$.post( homepage+'/player/login/', {'key': userData.userkey},function(data) {
+				try {
+                    //data = $.parseJSON(data);
+                    userData.position = data.position;
+                    setStorage('user',userData);
+                } catch (e) {
+                	
+                }
 			});
 		} else if (step === 5) {
 			var image_names = [];
