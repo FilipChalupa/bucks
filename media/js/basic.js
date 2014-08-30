@@ -266,19 +266,25 @@ $(function () {
 		if (size <= 0 || lastQuizImageIndexDownloaded >= quizData.length) {
 			syncStep(step+1);
 		} else {
-			$.post( homepage+'/player/image/'+quizData[lastQuizImageIndexDownloaded].filename.replace('.','/')+'/', upload_data,function(data) {
-				try {
-					setStorage('img-'+quizData[lastQuizImageIndexDownloaded].filename,data.image)
-					lastQuizImageIndexDownloaded++;
-					size--;
-					downloadImages(size,step,upload_data);            
-	            } catch (e) {
-	            	syncError(e);
-	            }
-			})
-			.fail(function(jqxhr, textStatus, error) {
-				syncError(imagesDownloadFail);
-			});
+			if (getFileURL(quizData[lastQuizImageIndexDownloaded].filename).length != 0) {
+				lastQuizImageIndexDownloaded++;
+				size--;
+				downloadImages(size,step,upload_data); 
+			} else {
+				$.post( homepage+'/player/image/'+quizData[lastQuizImageIndexDownloaded].filename.replace('.','/')+'/', upload_data,function(data) {
+					try {
+						setStorage('img-'+quizData[lastQuizImageIndexDownloaded].filename,data.image)
+						lastQuizImageIndexDownloaded++;
+						size--;
+						downloadImages(size,step,upload_data);            
+		            } catch (e) {
+		            	syncError(e);
+		            }
+				})
+				.fail(function(jqxhr, textStatus, error) {
+					syncError(imagesDownloadFail);
+				});
+			}
 		}
 	}
 	var currentStep = 0,
